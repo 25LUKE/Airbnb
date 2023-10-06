@@ -1,15 +1,36 @@
 import prisma from '@/app/lib/prismadb';
 
 // Calling the dataBase directly for listings
-export default async function getListings() {
+
+export interface IListingsParams {
+    userId?: string;
+}
+
+export default async function getListings(
+    params: IListingsParams
+) {
     try {
+        const { userId } = params;
+
+        let query: any = {};
+
+        if (userId) {
+            query.userId = userId;
+        }
+
         const listings = await prisma.listing.findMany({
+            where: query,
             orderBy: {
                 createdAt: 'desc'
             }
         });
 
-        return listings;
+        const SafeListings = listings.map((listing) => ({
+            ...listing,
+            createdAt: listing.createdAt.toISOString(),
+        }));
+
+        return SafeListings;
     } catch (error: any) {
         throw new Error(error);
     }

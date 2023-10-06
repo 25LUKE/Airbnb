@@ -1,14 +1,16 @@
 'use client';
 
-import { AiOutlineMenu } from 'react-icons/ai';
-import Avater from '../Avater';
+import { useRouter } from 'next/navigation';
 import { useCallback, useState } from 'react'
+import { AiOutlineMenu } from 'react-icons/ai';
+import { signOut } from 'next-auth/react'
+import Avater from '../Avater';
 import MenuItem from './MenuItem';
+import { SafeUser } from '@/app/types';
 import useRegisterModal from '@/app/hooks/useRegisterModal';
 import useLoginModal from '@/app/hooks/useLoginModal';
-import { signOut } from 'next-auth/react'
-import { SafeUser } from '@/app/types';
 import useRentModal from '@/app/hooks/useRentModal';
+
 
 interface UserMenuProps {
     currentUser?: SafeUser | null
@@ -17,6 +19,7 @@ interface UserMenuProps {
 const UserMenu: React.FC<UserMenuProps> = ({
     currentUser
 }) => {
+    const router = useRouter();
     const [isOpen, setIsOpen] = useState(false)
     const registerModal = useRegisterModal()
     const rentModal = useRentModal()
@@ -57,19 +60,19 @@ const UserMenu: React.FC<UserMenuProps> = ({
                         {currentUser ? (
                             <>
                                 <MenuItem
-                                    onClick={() => { }}
+                                    onClick={() => router.push('/trips')}
                                     label='My trips'
                                 />
                                 <MenuItem
-                                    onClick={() => { }}
+                                    onClick={() => router.push('/favorites')}
                                     label='My favorites'
                                 />
                                 <MenuItem
-                                    onClick={() => { }}
+                                    onClick={() => router.push('/reservations')}
                                     label='My reservations'
                                 />
                                 <MenuItem
-                                    onClick={() => { }}
+                                    onClick={() => router.push('/properties')}
                                     label='My properties'
                                 />
                                 <MenuItem

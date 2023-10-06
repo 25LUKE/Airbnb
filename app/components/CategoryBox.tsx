@@ -33,7 +33,7 @@ const CategoryBox: React.FC<CategoryBoxProps> = ({
         if (params?.get('category') === label) {
             delete updatedQuery.category;
         }
-        // If the category we click on is already beem selected in the URL theat means we want to reset it from the newest query
+        // If the category we click on is already beem selected in the URL that means we want to reset it from the newest query
         const url = qs.stringifyUrl({
             url: '/',
             query: updatedQuery
@@ -66,3 +66,7 @@ const CategoryBox: React.FC<CategoryBoxProps> = ({
 }
 
 export default CategoryBox
+
+
+
+

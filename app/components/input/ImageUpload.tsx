@@ -5,7 +5,6 @@ import Image from 'next/image';
 import { useCallback } from 'react';
 import { TbPhotoPlus } from 'react-icons/tb';
 
-
 declare global {
     var cloudinary: any;
 }
@@ -52,7 +51,7 @@ const ImageUpload: React.FC<imageUploadProps> = ({
                             text-neutral-600'
                     >
                         <TbPhotoPlus size={50} />
-                        <div className='font-seminold text-lg'>
+                        <div className='font-semibold text-lg'>
                             Click to upload
                         </div>
                         {value && (
