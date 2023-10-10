@@ -37,7 +37,8 @@ const PropertiesClient: React.FC<PropertiesClientProps> = ({
 
             setDeletingId('');
         })
-    }, [router])
+    }, [router]);
+
     return (
         <Container>
             <Heading
